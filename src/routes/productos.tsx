@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Outlet, useLocation } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { products } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
@@ -16,11 +16,16 @@ export const Route = createFileRoute("/productos")({
 });
 
 function ProductsPage() {
+  const location = useLocation();
   const [filter, setFilter] = useState<(typeof categories)[number]>("Todas");
   const list = useMemo(
     () => (filter === "Todas" ? products : products.filter((p) => p.category === filter)),
     [filter],
   );
+
+  if (location.pathname !== "/productos") {
+    return <Outlet />;
+  }
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 md:px-8">
