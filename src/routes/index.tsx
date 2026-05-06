@@ -91,12 +91,13 @@ function Index() {
       </section>
 
       {/* STORY */}
-      <section className="bg-night text-cream">
+      <section className="relative bg-night text-cream">
+        <div className="stripe-fiesta" />
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 md:grid-cols-2 md:px-8">
           <div>
-            <div className="mb-3 text-xs uppercase tracking-[0.25em] text-gold">Nuestra herencia</div>
+            <div className="mb-3 text-xs uppercase tracking-[0.25em] text-caribe-yellow">Nuestra herencia</div>
             <h2 className="font-display text-4xl md:text-5xl">
-              Hace 22 años abrimos las puertas a la <em className="font-serif italic text-gold">colección colombiana</em>.
+              Hace 22 años abrimos las puertas a la <em className="font-serif italic text-caribe-yellow">colección colombiana</em>.
             </h2>
           </div>
           <div className="space-y-4 text-cream/80">
