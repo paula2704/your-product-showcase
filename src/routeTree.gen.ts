@@ -9,38 +9,134 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as QuienesSomosRouteImport } from './routes/quienes-somos'
+import { Route as ProductosRouteImport } from './routes/productos'
+import { Route as ContactanosRouteImport } from './routes/contactanos'
+import { Route as CarritoRouteImport } from './routes/carrito'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProductosIdRouteImport } from './routes/productos.$id'
 
+const QuienesSomosRoute = QuienesSomosRouteImport.update({
+  id: '/quienes-somos',
+  path: '/quienes-somos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductosRoute = ProductosRouteImport.update({
+  id: '/productos',
+  path: '/productos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactanosRoute = ContactanosRouteImport.update({
+  id: '/contactanos',
+  path: '/contactanos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarritoRoute = CarritoRouteImport.update({
+  id: '/carrito',
+  path: '/carrito',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductosIdRoute = ProductosIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => ProductosRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/carrito': typeof CarritoRoute
+  '/contactanos': typeof ContactanosRoute
+  '/productos': typeof ProductosRouteWithChildren
+  '/quienes-somos': typeof QuienesSomosRoute
+  '/productos/$id': typeof ProductosIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/carrito': typeof CarritoRoute
+  '/contactanos': typeof ContactanosRoute
+  '/productos': typeof ProductosRouteWithChildren
+  '/quienes-somos': typeof QuienesSomosRoute
+  '/productos/$id': typeof ProductosIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/carrito': typeof CarritoRoute
+  '/contactanos': typeof ContactanosRoute
+  '/productos': typeof ProductosRouteWithChildren
+  '/quienes-somos': typeof QuienesSomosRoute
+  '/productos/$id': typeof ProductosIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/carrito'
+    | '/contactanos'
+    | '/productos'
+    | '/quienes-somos'
+    | '/productos/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/carrito'
+    | '/contactanos'
+    | '/productos'
+    | '/quienes-somos'
+    | '/productos/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/carrito'
+    | '/contactanos'
+    | '/productos'
+    | '/quienes-somos'
+    | '/productos/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CarritoRoute: typeof CarritoRoute
+  ContactanosRoute: typeof ContactanosRoute
+  ProductosRoute: typeof ProductosRouteWithChildren
+  QuienesSomosRoute: typeof QuienesSomosRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/quienes-somos': {
+      id: '/quienes-somos'
+      path: '/quienes-somos'
+      fullPath: '/quienes-somos'
+      preLoaderRoute: typeof QuienesSomosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/productos': {
+      id: '/productos'
+      path: '/productos'
+      fullPath: '/productos'
+      preLoaderRoute: typeof ProductosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contactanos': {
+      id: '/contactanos'
+      path: '/contactanos'
+      fullPath: '/contactanos'
+      preLoaderRoute: typeof ContactanosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/carrito': {
+      id: '/carrito'
+      path: '/carrito'
+      fullPath: '/carrito'
+      preLoaderRoute: typeof CarritoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +144,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/productos/$id': {
+      id: '/productos/$id'
+      path: '/$id'
+      fullPath: '/productos/$id'
+      preLoaderRoute: typeof ProductosIdRouteImport
+      parentRoute: typeof ProductosRoute
+    }
   }
 }
 
+interface ProductosRouteChildren {
+  ProductosIdRoute: typeof ProductosIdRoute
+}
+
+const ProductosRouteChildren: ProductosRouteChildren = {
+  ProductosIdRoute: ProductosIdRoute,
+}
+
+const ProductosRouteWithChildren = ProductosRoute._addFileChildren(
+  ProductosRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CarritoRoute: CarritoRoute,
+  ContactanosRoute: ContactanosRoute,
+  ProductosRoute: ProductosRouteWithChildren,
+  QuienesSomosRoute: QuienesSomosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
