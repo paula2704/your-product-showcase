@@ -23,15 +23,15 @@ function Index() {
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden border-b border-border/60">
+      <section className="relative overflow-hidden border-b border-border/60 bg-confetti">
+        <div className="absolute inset-x-0 top-0 stripe-fiesta" />
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:px-8 md:py-24">
           <div>
-            <div className="mb-5 inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-gold-deep">
-              <span className="h-px w-10 bg-gold" />
-              Arte · Madera · Historia
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-gradient-puertas px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary-foreground shadow-puerta">
+              Arte · Color · Patrimonio
             </div>
             <h1 className="font-display text-5xl leading-[1.05] text-balance md:text-7xl">
-              Guardamos la <em className="font-serif italic text-primary">historia</em> de Colombia en madera.
+              Guardamos la <em className="font-serif italic text-gradient-puertas">historia</em> de Colombia en madera.
             </h1>
             <p className="mt-6 max-w-md text-base text-muted-foreground">
               Diseñamos y elaboramos puertas artesanales colombianas que integran tradición, patrimonio y
@@ -60,12 +60,13 @@ function Index() {
           </div>
 
           <div className="relative">
-            <div className="aspect-[4/5] overflow-hidden rounded-sm shadow-2xl">
+            <div className="absolute -inset-3 rounded-md bg-gradient-fiesta opacity-80 blur-sm" aria-hidden />
+            <div className="relative aspect-[4/5] overflow-hidden rounded-sm shadow-2xl ring-4 ring-cream">
               <img src={heroCollection} alt="Colección de puertas colombianas" className="h-full w-full object-cover" />
             </div>
-            <div className="absolute -bottom-6 -left-6 hidden rounded-sm border border-border bg-background p-5 shadow-xl md:block">
+            <div className="absolute -bottom-6 -left-6 hidden rounded-sm border-l-4 border-primary bg-background p-5 shadow-xl md:block">
               <div className="font-serif italic text-lg leading-tight">
-                "Donde cada puerta<br />cuenta una historia."
+                "Donde cada puerta<br />cuenta una <span className="text-primary">historia</span>."
               </div>
               <div className="mt-2 text-[10px] uppercase tracking-[0.2em] text-gold-deep">Puertas Colombia</div>
             </div>
@@ -90,12 +91,13 @@ function Index() {
       </section>
 
       {/* STORY */}
-      <section className="bg-night text-cream">
+      <section className="relative bg-night text-cream">
+        <div className="stripe-fiesta" />
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 md:grid-cols-2 md:px-8">
           <div>
-            <div className="mb-3 text-xs uppercase tracking-[0.25em] text-gold">Nuestra herencia</div>
+            <div className="mb-3 text-xs uppercase tracking-[0.25em] text-caribe-yellow">Nuestra herencia</div>
             <h2 className="font-display text-4xl md:text-5xl">
-              Hace 22 años abrimos las puertas a la <em className="font-serif italic text-gold">colección colombiana</em>.
+              Hace 22 años abrimos las puertas a la <em className="font-serif italic text-caribe-yellow">colección colombiana</em>.
             </h2>
           </div>
           <div className="space-y-4 text-cream/80">
