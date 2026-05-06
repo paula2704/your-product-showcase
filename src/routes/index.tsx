@@ -60,12 +60,13 @@ function Index() {
           </div>
 
           <div className="relative">
-            <div className="aspect-[4/5] overflow-hidden rounded-sm shadow-2xl">
+            <div className="absolute -inset-3 rounded-md bg-gradient-fiesta opacity-80 blur-sm" aria-hidden />
+            <div className="relative aspect-[4/5] overflow-hidden rounded-sm shadow-2xl ring-4 ring-cream">
               <img src={heroCollection} alt="Colección de puertas colombianas" className="h-full w-full object-cover" />
             </div>
-            <div className="absolute -bottom-6 -left-6 hidden rounded-sm border border-border bg-background p-5 shadow-xl md:block">
+            <div className="absolute -bottom-6 -left-6 hidden rounded-sm border-l-4 border-primary bg-background p-5 shadow-xl md:block">
               <div className="font-serif italic text-lg leading-tight">
-                "Donde cada puerta<br />cuenta una historia."
+                "Donde cada puerta<br />cuenta una <span className="text-primary">historia</span>."
               </div>
               <div className="mt-2 text-[10px] uppercase tracking-[0.2em] text-gold-deep">Puertas Colombia</div>
             </div>
