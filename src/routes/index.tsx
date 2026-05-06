@@ -23,15 +23,15 @@ function Index() {
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden border-b border-border/60">
+      <section className="relative overflow-hidden border-b border-border/60 bg-confetti">
+        <div className="absolute inset-x-0 top-0 stripe-fiesta" />
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:px-8 md:py-24">
           <div>
-            <div className="mb-5 inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-gold-deep">
-              <span className="h-px w-10 bg-gold" />
-              Arte · Madera · Historia
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-gradient-puertas px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary-foreground shadow-puerta">
+              Arte · Color · Patrimonio
             </div>
             <h1 className="font-display text-5xl leading-[1.05] text-balance md:text-7xl">
-              Guardamos la <em className="font-serif italic text-primary">historia</em> de Colombia en madera.
+              Guardamos la <em className="font-serif italic text-gradient-puertas">historia</em> de Colombia en madera.
             </h1>
             <p className="mt-6 max-w-md text-base text-muted-foreground">
               Diseñamos y elaboramos puertas artesanales colombianas que integran tradición, patrimonio y
