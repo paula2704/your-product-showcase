@@ -124,4 +124,27 @@
       radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0);
     background-size: 24px 24px;
   }
+  .bg-gradient-caribe { background-image: var(--gradient-caribe); }
+  .bg-gradient-puertas { background-image: var(--gradient-puertas); }
+  .bg-gradient-fiesta { background-image: var(--gradient-fiesta); }
+  .text-gradient-puertas {
+    background-image: var(--gradient-puertas);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .shadow-puerta { box-shadow: var(--shadow-color); }
+  .stripe-fiesta {
+    background: var(--gradient-fiesta);
+    height: 6px;
+    width: 100%;
+  }
+  .bg-confetti {
+    background-color: var(--cream);
+    background-image:
+      radial-gradient(circle at 20% 30%, color-mix(in oklab, var(--caribe-yellow) 40%, transparent) 0, transparent 35%),
+      radial-gradient(circle at 80% 20%, color-mix(in oklab, var(--caribe-pink) 35%, transparent) 0, transparent 40%),
+      radial-gradient(circle at 70% 80%, color-mix(in oklab, var(--caribe-blue) 30%, transparent) 0, transparent 40%),
+      radial-gradient(circle at 15% 85%, color-mix(in oklab, var(--secondary) 28%, transparent) 0, transparent 38%);
+  }
 }
