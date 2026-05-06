@@ -37,6 +37,11 @@
   --color-gold-deep: var(--gold-deep);
   --color-cream: var(--cream);
   --color-night: var(--night);
+  --color-caribe-blue: var(--caribe-blue);
+  --color-caribe-yellow: var(--caribe-yellow);
+  --color-caribe-orange: var(--caribe-orange);
+  --color-caribe-pink: var(--caribe-pink);
+  --color-caribe-teal: var(--caribe-teal);
 }
 
 :root {
@@ -56,11 +61,17 @@
   --popover: oklch(1 0 0);
   --popover-foreground: var(--night);
 
-  --primary: oklch(0.32 0.08 150);          /* Verde colonial */
+  --primary: oklch(0.5 0.17 155);           /* Verde colonial vivo */
   --primary-foreground: var(--cream);
 
-  --secondary: oklch(0.55 0.18 28);         /* Rojo patriota */
+  --secondary: oklch(0.62 0.22 28);         /* Rojo patriota intenso */
   --secondary-foreground: var(--cream);
+
+  --caribe-blue: oklch(0.68 0.16 230);      /* Azul Caribe */
+  --caribe-yellow: oklch(0.85 0.17 90);     /* Amarillo tropical */
+  --caribe-orange: oklch(0.7 0.18 50);      /* Naranja terracota */
+  --caribe-pink: oklch(0.65 0.2 10);        /* Rosa colonial */
+  --caribe-teal: oklch(0.65 0.13 200);      /* Turquesa */
 
   --muted: oklch(0.93 0.012 85);
   --muted-foreground: oklch(0.4 0.01 90);

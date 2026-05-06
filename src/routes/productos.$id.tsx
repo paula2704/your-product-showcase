@@ -44,9 +44,15 @@ function ProductDetail() {
   const [active, setActive] = useState(0);
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
+  const [zoom, setZoom] = useState<{ x: number; y: number } | null>(null);
   const { add } = useCart();
 
   const related = products.filter((p) => p.id !== product.id && p.category === product.category).slice(0, 3);
+
+  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    setZoom({ x: ((e.clientX - r.left) / r.width) * 100, y: ((e.clientY - r.top) / r.height) * 100 });
+  };
 
   return (
     <>
@@ -55,27 +61,46 @@ function ProductDetail() {
           <ChevronLeft className="h-3.5 w-3.5" /> Catálogo
         </Link>
 
-        <div className="mt-8 grid gap-12 md:grid-cols-2">
-          {/* Gallery */}
-          <div>
-            <div className="aspect-[4/5] overflow-hidden rounded-sm bg-muted">
-              <img src={product.images[active]} alt={product.name} className="h-full w-full object-cover" />
-            </div>
+        <div className="mt-8 grid gap-10 md:grid-cols-2">
+          {/* Gallery — Amazon style */}
+          <div className="flex gap-3 sm:gap-4">
             {product.images.length > 1 && (
-              <div className="mt-4 grid grid-cols-4 gap-3">
+              <div className="flex w-14 sm:w-20 flex-col gap-2 shrink-0">
                 {product.images.map((img: string, i: number) => (
                   <button
                     key={i}
+                    onMouseEnter={() => setActive(i)}
                     onClick={() => setActive(i)}
-                    className={`aspect-square overflow-hidden rounded-sm border-2 transition ${
-                      active === i ? "border-primary" : "border-transparent opacity-70 hover:opacity-100"
+                    className={`aspect-square overflow-hidden rounded-md border-2 transition ${
+                      active === i ? "border-primary shadow-md" : "border-border opacity-80 hover:border-gold hover:opacity-100"
                     }`}
                   >
-                    <img src={img} alt={`${product.name} ${i + 1}`} className="h-full w-full object-cover" />
+                    <img src={img} alt={`${product.name} vista ${i + 1}`} className="h-full w-full object-cover" loading="lazy" />
                   </button>
                 ))}
               </div>
             )}
+
+            <div
+              className="relative flex-1 aspect-[4/5] overflow-hidden rounded-md bg-muted cursor-zoom-in border border-border"
+              onMouseMove={handleMove}
+              onMouseLeave={() => setZoom(null)}
+            >
+              <img
+                src={product.images[active]}
+                alt={product.name}
+                className="h-full w-full object-cover transition-transform duration-200"
+                style={zoom ? { transformOrigin: `${zoom.x}% ${zoom.y}%`, transform: "scale(2.2)" } : undefined}
+              />
+              <div className="absolute left-3 top-3 rounded-full bg-secondary px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-secondary-foreground shadow">
+                {product.category}
+              </div>
+              {product.images.length > 1 && (
+                <div className="absolute bottom-3 right-3 rounded-full bg-background/90 px-3 py-1 text-xs text-foreground">
+                  {active + 1} / {product.images.length}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Info */}
