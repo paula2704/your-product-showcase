@@ -537,62 +537,6 @@ Carrera 6 Calle 119b · Bogotá
 Sábados y domingos
 ```
 
----
-
-## 📦 Estado actual del proyecto
-
-| Módulo | Estado |
-|---|---|
-| Home | ✅ Completo |
-| Catálogo | ✅ Completo |
-| Filtros | ✅ Completo |
-| Detalle de producto | ✅ Completo |
-| Selector de tallas | ✅ Completo |
-| Imágenes de productos | ✅ Revisadas |
-| Carrito | ✅ Completo |
-| Checkout | ✅ Completo |
-| Pagos simulados | ✅ Completo |
-| Blog | ✅ Completo |
-| Comentarios | ✅ Completo |
-| Preguntas frecuentes | ✅ Completo |
-| Contacto | ✅ Completo |
-| Redes sociales | ✅ Completo |
-| Responsive | ✅ Revisado |
-| README | ✅ Completo |
-| Publicación | ⏳ Pendiente |
-| PDF final | ⏳ Pendiente |
-
----
-
-## 📌 Pendientes finales
-
-- Publicar el portal en una URL pública.
-- Crear o completar estadísticas de pruebas.
-- Agregar evidencias finales del proyecto.
-- Generar PDF con capturas del portal.
-- Entregar URL pública.
-- Subir última versión a GitHub.
-
----
-
-## 🧾 Entrega final
-
-Para la entrega final se debe presentar:
-
-- URL pública del portal.
-- Portal funcionando en sitio gratuito.
-- Catálogo con productos, categorías y referencias.
-- Carrito de compras con varios productos.
-- Simulación de pago por internet.
-- Blog con comentarios.
-- Redes sociales funcionales.
-- Evidencias de pruebas o validación.
-- PDF con capturas del portal.
-- Repositorio actualizado en GitHub.
-- README del proyecto.
-
----
-
 ## 🧑‍💻 Autor
 
 Proyecto desarrollado para la materia:
