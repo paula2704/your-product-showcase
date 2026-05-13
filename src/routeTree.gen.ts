@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ValidacionRouteImport } from './routes/validacion'
 import { Route as QuienesSomosRouteImport } from './routes/quienes-somos'
 import { Route as ProductosRouteImport } from './routes/productos'
 import { Route as PreguntasFrecuentesRouteImport } from './routes/preguntas-frecuentes'
@@ -19,6 +20,11 @@ import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductosIdRouteImport } from './routes/productos.$id'
 
+const ValidacionRoute = ValidacionRouteImport.update({
+  id: '/validacion',
+  path: '/validacion',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const QuienesSomosRoute = QuienesSomosRouteImport.update({
   id: '/quienes-somos',
   path: '/quienes-somos',
@@ -74,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/preguntas-frecuentes': typeof PreguntasFrecuentesRoute
   '/productos': typeof ProductosRouteWithChildren
   '/quienes-somos': typeof QuienesSomosRoute
+  '/validacion': typeof ValidacionRoute
   '/productos/$id': typeof ProductosIdRoute
 }
 export interface FileRoutesByTo {
@@ -85,6 +92,7 @@ export interface FileRoutesByTo {
   '/preguntas-frecuentes': typeof PreguntasFrecuentesRoute
   '/productos': typeof ProductosRouteWithChildren
   '/quienes-somos': typeof QuienesSomosRoute
+  '/validacion': typeof ValidacionRoute
   '/productos/$id': typeof ProductosIdRoute
 }
 export interface FileRoutesById {
@@ -97,6 +105,7 @@ export interface FileRoutesById {
   '/preguntas-frecuentes': typeof PreguntasFrecuentesRoute
   '/productos': typeof ProductosRouteWithChildren
   '/quienes-somos': typeof QuienesSomosRoute
+  '/validacion': typeof ValidacionRoute
   '/productos/$id': typeof ProductosIdRoute
 }
 export interface FileRouteTypes {
@@ -110,6 +119,7 @@ export interface FileRouteTypes {
     | '/preguntas-frecuentes'
     | '/productos'
     | '/quienes-somos'
+    | '/validacion'
     | '/productos/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -121,6 +131,7 @@ export interface FileRouteTypes {
     | '/preguntas-frecuentes'
     | '/productos'
     | '/quienes-somos'
+    | '/validacion'
     | '/productos/$id'
   id:
     | '__root__'
@@ -132,6 +143,7 @@ export interface FileRouteTypes {
     | '/preguntas-frecuentes'
     | '/productos'
     | '/quienes-somos'
+    | '/validacion'
     | '/productos/$id'
   fileRoutesById: FileRoutesById
 }
@@ -144,10 +156,18 @@ export interface RootRouteChildren {
   PreguntasFrecuentesRoute: typeof PreguntasFrecuentesRoute
   ProductosRoute: typeof ProductosRouteWithChildren
   QuienesSomosRoute: typeof QuienesSomosRoute
+  ValidacionRoute: typeof ValidacionRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/validacion': {
+      id: '/validacion'
+      path: '/validacion'
+      fullPath: '/validacion'
+      preLoaderRoute: typeof ValidacionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/quienes-somos': {
       id: '/quienes-somos'
       path: '/quienes-somos'
@@ -235,6 +255,7 @@ const rootRouteChildren: RootRouteChildren = {
   PreguntasFrecuentesRoute: PreguntasFrecuentesRoute,
   ProductosRoute: ProductosRouteWithChildren,
   QuienesSomosRoute: QuienesSomosRoute,
+  ValidacionRoute: ValidacionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

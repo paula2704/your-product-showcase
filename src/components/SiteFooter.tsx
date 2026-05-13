@@ -99,7 +99,10 @@ export function SiteFooter() {
       <div className="border-t border-cream/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-6 text-xs text-cream/50 md:flex-row md:px-8">
           <span>© {new Date().getFullYear()} Puertas Colombia. Todos los derechos reservados.</span>
-          <span className="font-serif italic">Donde cada puerta cuenta una historia.</span>
+          <div className="flex items-center gap-4">
+            <span className="font-serif italic">Donde cada puerta cuenta una historia.</span>
+            <Link to="/validacion" className="hover:text-gold">Validación del portal</Link>
+          </div>
         </div>
       </div>
     </footer>

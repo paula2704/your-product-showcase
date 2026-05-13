@@ -4,6 +4,9 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { CartProvider } from "@/context/CartContext";
 import { Link } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { useLocation } from "@tanstack/react-router";
+import { initAnalytics, trackPageView } from "@/lib/analytics";
 
 import appCss from "../styles.css?url";
 
@@ -71,6 +74,16 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
+  const location = useLocation();
+
+  useEffect(() => {
+    initAnalytics();
+  }, []);
+
+  useEffect(() => {
+    trackPageView(location.pathname);
+  }, [location.pathname]);
+
   return (
     <CartProvider>
       <div className="flex min-h-screen flex-col">

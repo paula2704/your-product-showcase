@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { MouseEvent, ReactNode } from "react";
 import { useCart } from "@/context/CartContext";
 import {
@@ -28,6 +28,7 @@ import {
   getProductMaterials,
   getProductAvailability,
 } from "@/data/products";
+import { trackEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/productos/$id")({
   loader: ({ params }) => {
@@ -100,6 +101,38 @@ function ProductDetail() {
   const materials = getProductMaterials(product);
   const availability = getProductAvailability(product);
 
+  const analyticsItem = {
+    item_id: product.id,
+    item_name: product.name,
+    item_category: product.category,
+    item_variant: product.size,
+    item_brand: "Puertas Colombia",
+    price: product.price,
+    quantity: qty,
+  };
+
+  useEffect(() => {
+    trackEvent("view_item", {
+      currency: "COP",
+      value: product.price,
+      item_id: product.id,
+      item_name: product.name,
+      item_category: product.category,
+      item_variant: product.size,
+      items: [
+        {
+          item_id: product.id,
+          item_name: product.name,
+          item_category: product.category,
+          item_variant: product.size,
+          item_brand: "Puertas Colombia",
+          price: product.price,
+          quantity: 1,
+        },
+      ],
+    });
+  }, [product]);
+
   const productBaseName = normalize(product.name);
   const productRefNumber = product.ref.replace(/\D/g, "");
   const productRegionBase = normalize(product.region.split("·")[0] ?? product.region);
@@ -145,8 +178,30 @@ function ProductDetail() {
 
   const handleAdd = () => {
     add(product.id, qty);
+
+    trackEvent("add_to_cart", {
+      currency: "COP",
+      value: product.price * qty,
+      item_id: product.id,
+      item_name: product.name,
+      item_category: product.category,
+      item_variant: product.size,
+      quantity: qty,
+      items: [analyticsItem],
+    });
+
     setAdded(true);
     setTimeout(() => setAdded(false), 1800);
+  };
+
+  const handleWhatsAppClick = () => {
+    trackEvent("contact_whatsapp", {
+      location: "product_detail",
+      item_id: product.id,
+      item_name: product.name,
+      item_category: product.category,
+      item_variant: product.size,
+    });
   };
 
   return (
@@ -400,6 +455,7 @@ function ProductDetail() {
                 href="https://wa.me/573216136824?text=Hola%20Puertas%20Colombia%2C%20quiero%20informaci%C3%B3n%20sobre%20este%20producto."
                 target="_blank"
                 rel="noreferrer"
+                onClick={handleWhatsAppClick}
                 className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-border px-5 py-3 text-sm font-medium transition hover:bg-muted"
               >
                 <MessageCircle className="h-4 w-4" />
