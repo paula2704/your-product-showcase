@@ -1,16 +1,23 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
 
 export const Route = createFileRoute("/contactanos")({
   head: () => ({
     meta: [
       { title: "Contáctanos · Puertas Colombia" },
-      { name: "description", content: "Escríbenos para cotizaciones, pedidos personalizados y colaboraciones." },
+      {
+        name: "description",
+        content:
+          "Escríbenos para cotizaciones, pedidos personalizados, envíos nacionales y compras de piezas artesanales.",
+      },
     ],
   }),
   component: ContactPage,
 });
+
+const whatsappUrl =
+  "https://wa.me/573216136824?text=Hola%20Puertas%20Colombia%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20productos.";
 
 function ContactPage() {
   const [sent, setSent] = useState(false);
@@ -18,26 +25,57 @@ function ContactPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-20 md:px-8">
       <header className="max-w-2xl">
-        <div className="mb-3 text-xs uppercase tracking-[0.25em] text-gold-deep">Contáctanos</div>
-        <h1 className="font-display text-5xl text-balance md:text-6xl">Hablemos de tu próxima pieza</h1>
+        <div className="mb-3 text-xs uppercase tracking-[0.25em] text-gold-deep">
+          Contáctanos
+        </div>
+        <h1 className="font-display text-5xl text-balance md:text-6xl">
+          Hablemos de tu próxima pieza
+        </h1>
         <p className="mt-4 text-muted-foreground">
-          Estamos aquí para responder tus preguntas, recibir encargos personalizados o conversar sobre el
-          patrimonio arquitectónico colombiano.
+          Escríbenos para comprar una pieza disponible, solicitar un pedido personalizado o resolver
+          dudas sobre envíos, tiempos de entrega y métodos de pago.
         </p>
       </header>
 
       <div className="mt-14 grid gap-12 lg:grid-cols-5">
         <div className="space-y-6 lg:col-span-2">
-          <Info icon={<MapPin className="h-4 w-4" />} title="Visítanos" lines={["Bogotá, Colombia", "Cita previa por mensaje"]} />
-          <Info icon={<Mail className="h-4 w-4" />} title="Escríbenos" lines={["hola@puertascolombia.co"]} />
-          <Info icon={<Phone className="h-4 w-4" />} title="Llámanos" lines={["+57 310 000 0000", "Lun – Sáb · 9am – 6pm"]} />
+          <Info
+            icon={<MapPin className="h-4 w-4" />}
+            title="Ubicación"
+            lines={[
+              "Mercado de las Pulgas Usaquén · Stand 18",
+              "Carrera 6 Calle 119b · Bogotá",
+              "Sábados y domingos",
+            ]}
+          />
+          <Info
+            icon={<Mail className="h-4 w-4" />}
+            title="Correo"
+            lines={["puertascombianas@gmail.com"]}
+          />
+          <Info
+            icon={<Phone className="h-4 w-4" />}
+            title="Teléfonos"
+            lines={["+57 321 613 6824", "+57 311 841 7307"]}
+          />
+
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center justify-center gap-2 rounded-sm bg-green-600 px-6 py-3 text-sm uppercase tracking-wider text-white transition hover:bg-green-700"
+          >
+            <MessageCircle className="h-5 w-5" />
+            Escribir por WhatsApp
+          </a>
 
           <div className="rounded-sm border border-border bg-card p-6">
             <div className="font-serif italic text-lg leading-snug text-foreground">
-              "Esta puerta estuvo cien años guardando historias en una casona del Quindío. Hoy la recreamos en
-              cedro para que sea parte de la tuya."
+              “Cada pieza se trabaja a mano y se confirma contigo antes del despacho.”
             </div>
-            <div className="mt-3 text-[10px] uppercase tracking-[0.2em] text-gold-deep">— Puertas Colombia</div>
+            <div className="mt-3 text-[10px] uppercase tracking-[0.2em] text-gold-deep">
+              — Puertas Colombia
+            </div>
           </div>
         </div>
 
@@ -54,24 +92,39 @@ function ContactPage() {
             <Field label="Nombre" name="name" required />
             <Field label="Correo" name="email" type="email" required />
           </div>
+
+          <div className="grid gap-5 md:grid-cols-2">
+            <Field label="Teléfono" name="phone" />
+            <Field label="Ciudad" name="city" />
+          </div>
+
           <Field label="Asunto" name="subject" />
+
           <div>
-            <label className="mb-1.5 block text-xs uppercase tracking-wider text-muted-foreground">Mensaje</label>
+            <label className="mb-1.5 block text-xs uppercase tracking-wider text-muted-foreground">
+              Mensaje
+            </label>
             <textarea
               name="message"
               rows={6}
               required
+              placeholder="Cuéntanos qué producto te interesa o si deseas una pieza personalizada."
               className="w-full rounded-sm border border-input bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none"
             />
           </div>
+
           <button
             type="submit"
             className="inline-flex items-center justify-center gap-2 rounded-sm bg-primary px-6 py-3 text-sm uppercase tracking-wider text-primary-foreground transition hover:opacity-90"
           >
-            <Send className="h-4 w-4" /> Enviar mensaje
+            <Send className="h-4 w-4" />
+            Enviar mensaje
           </button>
+
           {sent && (
-            <p className="text-sm text-primary">Gracias por escribir. Te responderemos pronto.</p>
+            <p className="text-sm text-primary">
+              Gracias por escribir. Te responderemos pronto.
+            </p>
           )}
         </form>
       </div>
@@ -79,10 +132,22 @@ function ContactPage() {
   );
 }
 
-function Field({ label, name, type = "text", required }: { label: string; name: string; type?: string; required?: boolean }) {
+function Field({
+  label,
+  name,
+  type = "text",
+  required,
+}: {
+  label: string;
+  name: string;
+  type?: string;
+  required?: boolean;
+}) {
   return (
     <div>
-      <label className="mb-1.5 block text-xs uppercase tracking-wider text-muted-foreground">{label}</label>
+      <label className="mb-1.5 block text-xs uppercase tracking-wider text-muted-foreground">
+        {label}
+      </label>
       <input
         type={type}
         name={name}
@@ -93,16 +158,51 @@ function Field({ label, name, type = "text", required }: { label: string; name: 
   );
 }
 
-function Info({ icon, title, lines }: { icon: React.ReactNode; title: string; lines: string[] }) {
+function ContactPromise({ title, text }: { title: string; text: string }) {
+  return (
+    <div className="rounded-sm border border-border bg-card p-5">
+      <h3 className="font-display text-xl">{title}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p>
+    </div>
+  );
+}
+function Info({
+  icon,
+  title,
+  lines,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  lines: string[];
+}) {
   return (
     <div>
       <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-gold-deep">
-        <span className="grid h-7 w-7 place-items-center rounded-full bg-primary/10 text-primary">{icon}</span>
+        <span className="grid h-7 w-7 place-items-center rounded-full bg-primary/10 text-primary">
+          {icon}
+        </span>
         {title}
       </div>
       <div className="mt-2 space-y-0.5 pl-9 text-sm">
-        {lines.map((l) => <div key={l}>{l}</div>)}
+        {lines.map((line) => (
+          <div key={line}>{line}</div>
+        ))}
       </div>
+
+      <section className="mt-16 grid gap-4 md:grid-cols-3">
+        <ContactPromise
+          title="Atención personalizada"
+          text="Te ayudamos a escoger la pieza ideal según espacio, tamaño, ciudad de inspiración o tipo de regalo."
+        />
+        <ContactPromise
+          title="Pedidos confirmados"
+          text="Antes de despachar, verificamos disponibilidad, datos de contacto, dirección y método de entrega."
+        />
+        <ContactPromise
+          title="Envíos nacionales"
+          text="Realizamos envíos a principales ciudades de Colombia con tiempos estimados según disponibilidad."
+        />
+      </section>
     </div>
   );
 }

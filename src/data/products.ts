@@ -40,11 +40,14 @@ export type Product = {
   region: string;
   ref: string;
   size: string;
-  category: "XXL" | "XL" | "L" | "M" | "S" | "Aldabas" | "Porta llaves";
+  category: "XXL" | "XL" | "L" | "M" | "S" | "XS" | "Aldabas" | "Porta llaves";
   price: number;
   images: string[];
   shortDescription: string;
   description: string;
+  materials?: string;
+  availability?: "Disponible" | "Bajo pedido" | "Agotado";
+  badge?: "Más vendido" | "Nuevo" | "Edición especial" | "Bajo pedido";
 };
 
 export const products: Product[] = [
@@ -243,9 +246,268 @@ export const products: Product[] = [
     description:
       "Pieza funcional y decorativa: una réplica de puerta colonial colombiana que se abre para revelar ganchos para llaves. Madera tallada y pintada a mano.",
   },
+    {
+    id: "salamina-107",
+    name: "Salamina",
+    region: "Salamina · Caldas",
+    ref: "Ref. 107",
+    size: "14 cm × 20 cm",
+    category: "M",
+    price: 240000,
+    images: [santafe1, santafe2],
+    shortDescription: "Puerta caldense de formato mediano inspirada en la arquitectura tradicional.",
+    description:
+      "Pieza artesanal inspirada en las puertas de Salamina, Caldas. Su formato mediano permite ubicarla en estudios, salas auxiliares o espacios de colección.",
+    availability: "Disponible",
+    badge: "Nuevo",
+  },
+  {
+    id: "popayan-116",
+    name: "Popayán",
+    region: "Popayán · Cauca",
+    ref: "Ref. 116",
+    size: "14 cm × 20 cm",
+    category: "M",
+    price: 250000,
+    images: [candelaria1, candelaria2],
+    shortDescription: "Puerta blanca de inspiración colonial payanesa.",
+    description:
+      "Inspirada en la arquitectura blanca y colonial de Popayán. Una pieza de formato mediano pensada para decoración interior y regalos con identidad cultural.",
+    availability: "Bajo pedido",
+    badge: "Bajo pedido",
+  },
+  {
+    id: "riohacha-108",
+    name: "Riohacha",
+    region: "Riohacha · Guajira",
+    ref: "Ref. 108",
+    size: "14 cm × 20 cm",
+    category: "M",
+    price: 240000,
+    images: [costaCaribe1, costaCaribe2],
+    shortDescription: "Puerta mediana inspirada en los colores del Caribe colombiano.",
+    description:
+      "Diseño artesanal inspirado en la Guajira y sus tonos cálidos. Ideal para quienes buscan una pieza decorativa con carácter caribeño.",
+    availability: "Disponible",
+  },
+  {
+    id: "jardin-103",
+    name: "Jardín",
+    region: "Jardín · Antioquia",
+    ref: "Ref. 103",
+    size: "14 cm × 20 cm",
+    category: "M",
+    price: 245000,
+    images: [granada1, granada2],
+    shortDescription: "Pieza antioqueña de formato mediano con inspiración de pueblo patrimonial.",
+    description:
+      "Puerta artesanal inspirada en los balcones, colores y fachadas tradicionales de Jardín, Antioquia. Una pieza ideal para colección o regalo.",
+    availability: "Disponible",
+  },
+
+  {
+    id: "barranquilla-059-s",
+    name: "Barranquilla S",
+    region: "Barranquilla · Atlántico",
+    ref: "Ref. 059",
+    size: "Aprox. 19 cm × 11 cm",
+    category: "S",
+    price: 145000,
+    images: [barranquilla1, barranquilla2],
+    shortDescription: "Puerta pequeña de inspiración barranquillera.",
+    description:
+      "Formato pequeño inspirado en los colores vivos de Barranquilla. Ideal como souvenir, regalo o pieza decorativa auxiliar.",
+    availability: "Disponible",
+    badge: "Más vendido",
+  },
+  {
+    id: "usaquen-073-s",
+    name: "Usaquén S",
+    region: "Usaquén · Bogotá",
+    ref: "Ref. 073",
+    size: "Aprox. 19 cm × 11 cm",
+    category: "S",
+    price: 145000,
+    images: [usaquen1, usaquen2],
+    shortDescription: "Puerta pequeña inspirada en el antiguo pueblo de Usaquén.",
+    description:
+      "Pieza artesanal de formato pequeño inspirada en las puertas tradicionales de Usaquén, Bogotá. Funciona muy bien como recuerdo o detalle decorativo.",
+    availability: "Disponible",
+  },
+  {
+    id: "cartagena-083-s",
+    name: "Cartagena S",
+    region: "Cartagena · Bolívar",
+    ref: "Ref. 083",
+    size: "Aprox. 19 cm × 11 cm",
+    category: "S",
+    price: 150000,
+    images: [cartagena1, cartagena2],
+    shortDescription: "Puerta pequeña inspirada en la ciudad amurallada.",
+    description:
+      "Diseño pequeño inspirado en Cartagena y sus puertas coloniales. Una pieza con alto valor decorativo y cultural.",
+    availability: "Bajo pedido",
+    badge: "Bajo pedido",
+  },
+  {
+    id: "salento-010-s",
+    name: "Salento S",
+    region: "Salento · Quindío",
+    ref: "Ref. 010",
+    size: "Aprox. 19 cm × 11 cm",
+    category: "S",
+    price: 145000,
+    images: [filandia1, filandia2],
+    shortDescription: "Puerta pequeña inspirada en la arquitectura cafetera.",
+    description:
+      "Pieza de formato pequeño inspirada en el paisaje cultural cafetero y sus casas tradicionales llenas de color.",
+    availability: "Disponible",
+  },
+  {
+    id: "fresno-088-s",
+    name: "Fresno S",
+    region: "Fresno · Tolima",
+    ref: "Ref. 088",
+    size: "Aprox. 19 cm × 11 cm",
+    category: "S",
+    price: 140000,
+    images: [granada1, granada2],
+    shortDescription: "Puerta pequeña inspirada en la arquitectura tradicional del Tolima.",
+    description:
+      "Diseño artesanal de formato pequeño inspirado en puertas regionales del Tolima. Ideal para detalles decorativos o regalos.",
+    availability: "Disponible",
+    badge: "Nuevo",
+  },
+
+  {
+    id: "bogota-116-xs",
+    name: "Bogotá XS",
+    region: "Bogotá · Cundinamarca",
+    ref: "Ref. 116",
+    size: "Aprox. 10 cm × 11 cm",
+    category: "XS",
+    price: 95000,
+    images: [bogota1, bogota3],
+    shortDescription: "Mini puerta decorativa inspirada en Bogotá.",
+    description:
+      "Formato XS inspirado en puertas bogotanas. Perfecto para colección, regalo pequeño o decoración de escritorio.",
+    availability: "Disponible",
+    badge: "Más vendido",
+  },
+  {
+    id: "barranquilla-012-xs",
+    name: "Barranquilla XS",
+    region: "Barranquilla · Atlántico",
+    ref: "Ref. 012",
+    size: "Aprox. 10 cm × 11 cm",
+    category: "XS",
+    price: 95000,
+    images: [barranquilla1, barranquilla2],
+    shortDescription: "Mini puerta con inspiración caribeña.",
+    description:
+      "Pieza XS inspirada en Barranquilla. Su tamaño compacto la hace ideal como souvenir o detalle decorativo.",
+    availability: "Disponible",
+  },
+  {
+    id: "filandia-031-xs",
+    name: "Filandia XS",
+    region: "Filandia · Quindío",
+    ref: "Ref. 031",
+    size: "Aprox. 10 cm × 11 cm",
+    category: "XS",
+    price: 95000,
+    images: [filandia1, filandia2],
+    shortDescription: "Mini puerta inspirada en la arquitectura cafetera.",
+    description:
+      "Formato XS inspirado en Filandia y la arquitectura del Eje Cafetero. Una pieza pequeña con gran identidad regional.",
+    availability: "Disponible",
+  },
+  {
+    id: "cartagena-209-xs",
+    name: "Cartagena XS",
+    region: "Cartagena · Bolívar",
+    ref: "Ref. 209",
+    size: "Aprox. 10 cm × 11 cm",
+    category: "XS",
+    price: 98000,
+    images: [cartagena1, cartagena2],
+    shortDescription: "Mini puerta inspirada en Cartagena.",
+    description:
+      "Pieza XS inspirada en las puertas coloniales de Cartagena. Ideal para colección, souvenir o regalo con identidad colombiana.",
+    availability: "Bajo pedido",
+    badge: "Bajo pedido",
+  },
+
+  {
+    id: "aldaba-caballo-mar",
+    name: "Aldaba Caballo de Mar",
+    region: "Cartagena · Bolívar",
+    ref: "Aldaba C01",
+    size: "Aprox. 20 cm × 35 cm",
+    category: "Aldabas",
+    price: 190000,
+    images: [aldabaLeon, aldabaLeon2],
+    shortDescription: "Aldaba edición especial inspirada en portones de Cartagena.",
+    description:
+      "Aldaba decorativa de edición especial inspirada en los portones históricos de Cartagena. Representa la conexión entre mar, arquitectura y tradición artesanal.",
+    materials: "Bronce envejecido trabajado artesanalmente",
+    availability: "Bajo pedido",
+    badge: "Edición especial",
+  },
 ];
 
 export const getProduct = (id: string) => products.find((p) => p.id === id);
 
 export const formatPrice = (n: number) =>
   new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", maximumFractionDigits: 0 }).format(n);
+
+export const getProductSku = (product: Product) => {
+  const line =
+    product.category === "Aldabas"
+      ? "ALD"
+      : product.category === "Porta llaves"
+        ? "PKL"
+        : "PRT";
+
+  const size =
+    product.category === "Aldabas"
+      ? "ESP"
+      : product.category === "Porta llaves"
+        ? "XL"
+        : product.category;
+
+  const ref = product.ref.replace(/\D/g, "").padStart(3, "0") || "001";
+
+  const region = product.region.toLowerCase();
+
+  const regionCode = region.includes("bogotá") || region.includes("candelaria") || region.includes("usaquén")
+    ? "BOG"
+    : region.includes("cartagena")
+      ? "CTG"
+      : region.includes("barranquilla")
+        ? "BQL"
+        : region.includes("mompox")
+          ? "MOM"
+          : region.includes("antioquia") || region.includes("granada") || region.includes("santa fe")
+            ? "ANT"
+            : region.includes("quindío") || region.includes("filandia")
+              ? "QUI"
+              : region.includes("santander") || region.includes("girón")
+                ? "SAN"
+                : region.includes("santa marta") || region.includes("magdalena")
+                  ? "STA"
+                  : "COL";
+
+  return `PC-${line}-${size}-${ref}-${regionCode}-V1`;
+};
+
+export const getProductMaterials = (product: Product) =>
+  product.materials ??
+  (product.category === "Aldabas"
+    ? "Bronce envejecido trabajado artesanalmente"
+    : product.category === "Porta llaves"
+      ? "Madera tallada a mano, ganchos metálicos y acabado protector"
+      : "Madera tallada a mano, pintura artesanal y acabado protector");
+
+export const getProductAvailability = (product: Product) =>
+  product.availability ?? "Disponible";

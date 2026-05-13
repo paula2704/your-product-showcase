@@ -11,8 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as QuienesSomosRouteImport } from './routes/quienes-somos'
 import { Route as ProductosRouteImport } from './routes/productos'
+import { Route as PreguntasFrecuentesRouteImport } from './routes/preguntas-frecuentes'
 import { Route as ContactanosRouteImport } from './routes/contactanos'
+import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CarritoRouteImport } from './routes/carrito'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductosIdRouteImport } from './routes/productos.$id'
 
@@ -26,14 +29,29 @@ const ProductosRoute = ProductosRouteImport.update({
   path: '/productos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PreguntasFrecuentesRoute = PreguntasFrecuentesRouteImport.update({
+  id: '/preguntas-frecuentes',
+  path: '/preguntas-frecuentes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactanosRoute = ContactanosRouteImport.update({
   id: '/contactanos',
   path: '/contactanos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CarritoRoute = CarritoRouteImport.update({
   id: '/carrito',
   path: '/carrito',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -49,16 +67,22 @@ const ProductosIdRoute = ProductosIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/blog': typeof BlogRoute
   '/carrito': typeof CarritoRoute
+  '/checkout': typeof CheckoutRoute
   '/contactanos': typeof ContactanosRoute
+  '/preguntas-frecuentes': typeof PreguntasFrecuentesRoute
   '/productos': typeof ProductosRouteWithChildren
   '/quienes-somos': typeof QuienesSomosRoute
   '/productos/$id': typeof ProductosIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/blog': typeof BlogRoute
   '/carrito': typeof CarritoRoute
+  '/checkout': typeof CheckoutRoute
   '/contactanos': typeof ContactanosRoute
+  '/preguntas-frecuentes': typeof PreguntasFrecuentesRoute
   '/productos': typeof ProductosRouteWithChildren
   '/quienes-somos': typeof QuienesSomosRoute
   '/productos/$id': typeof ProductosIdRoute
@@ -66,8 +90,11 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/blog': typeof BlogRoute
   '/carrito': typeof CarritoRoute
+  '/checkout': typeof CheckoutRoute
   '/contactanos': typeof ContactanosRoute
+  '/preguntas-frecuentes': typeof PreguntasFrecuentesRoute
   '/productos': typeof ProductosRouteWithChildren
   '/quienes-somos': typeof QuienesSomosRoute
   '/productos/$id': typeof ProductosIdRoute
@@ -76,24 +103,33 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/blog'
     | '/carrito'
+    | '/checkout'
     | '/contactanos'
+    | '/preguntas-frecuentes'
     | '/productos'
     | '/quienes-somos'
     | '/productos/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/blog'
     | '/carrito'
+    | '/checkout'
     | '/contactanos'
+    | '/preguntas-frecuentes'
     | '/productos'
     | '/quienes-somos'
     | '/productos/$id'
   id:
     | '__root__'
     | '/'
+    | '/blog'
     | '/carrito'
+    | '/checkout'
     | '/contactanos'
+    | '/preguntas-frecuentes'
     | '/productos'
     | '/quienes-somos'
     | '/productos/$id'
@@ -101,8 +137,11 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BlogRoute: typeof BlogRoute
   CarritoRoute: typeof CarritoRoute
+  CheckoutRoute: typeof CheckoutRoute
   ContactanosRoute: typeof ContactanosRoute
+  PreguntasFrecuentesRoute: typeof PreguntasFrecuentesRoute
   ProductosRoute: typeof ProductosRouteWithChildren
   QuienesSomosRoute: typeof QuienesSomosRoute
 }
@@ -123,6 +162,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/preguntas-frecuentes': {
+      id: '/preguntas-frecuentes'
+      path: '/preguntas-frecuentes'
+      fullPath: '/preguntas-frecuentes'
+      preLoaderRoute: typeof PreguntasFrecuentesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contactanos': {
       id: '/contactanos'
       path: '/contactanos'
@@ -130,11 +176,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactanosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/carrito': {
       id: '/carrito'
       path: '/carrito'
       fullPath: '/carrito'
       preLoaderRoute: typeof CarritoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -168,11 +228,23 @@ const ProductosRouteWithChildren = ProductosRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BlogRoute: BlogRoute,
   CarritoRoute: CarritoRoute,
+  CheckoutRoute: CheckoutRoute,
   ContactanosRoute: ContactanosRoute,
+  PreguntasFrecuentesRoute: PreguntasFrecuentesRoute,
   ProductosRoute: ProductosRouteWithChildren,
   QuienesSomosRoute: QuienesSomosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}
